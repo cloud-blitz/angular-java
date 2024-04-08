@@ -1,0 +1,25 @@
+html{
+    margin:0;
+    padding:0;
+}
+h1{
+    align-items: center;
+    text-align: center;
+    background-color: limegreen;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 0px;
+    font-size: 50px;
+    width: 100%;
+    border:1px black solid;
+    margin-bottom: 20px;
+}
+.footer{
+    font-size: 15px;
+    margin-top: 20px;
+
+}
+body{
+    background-color: #fdfdfd;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}

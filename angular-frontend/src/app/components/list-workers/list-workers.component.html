@@ -1,0 +1,23 @@
+<table class="top_table"><tr class="top_table">
+<td class="top_table_left"><a routerLink="/addworker">Add Worker</a></td>
+<td class="top_table_right"><input type="text"
+           [(ngModel)]="filters.keyWord"
+           name="keyWord"
+           (input)="listWorkers()"
+           placeholder="Search by Name"/></td>
+</tr></table>
+<table><tr>
+<th>Order</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Status</th>
+            <th>Edit Button</th>
+            <th>Delete Button</th></tr>
+    <tr *ngFor="let worker of workers; let i = index">
+        <td>{{i+1+'.'}}</td>
+        <td>{{worker.workerFName}}</td>
+        <td>{{worker.workerLName}}</td>
+        <td>{{worker.status}}</td>
+        <td><a routerLink="/editworker/{{worker.id}}">Edit</a></td>
+        <td><button (click)="clickMethod(worker.id)">Delete</button></td></tr>
+    </table>

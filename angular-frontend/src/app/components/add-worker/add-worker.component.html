@@ -1,0 +1,25 @@
+<table class="top_table_left"><tr class="top_table_left"><td class="top_table_left"><a routerLink="/workers">Return</a></td></tr></table>
+
+<form (ngSubmit)="saveWorker()">
+    <table><tr>
+    <td><input type="text"
+           name="workerFName"
+           [(ngModel)]="worker.workerFName"
+           placeholder="Enter workers First Name"/></td>
+    
+    <td><input type="text"
+           name="workerLName"
+           [(ngModel)]="worker.workerLName"
+           placeholder="Enter workers Last Name"/></td>
+
+    <td><input type="text"
+           name="status"
+           [(ngModel)]="worker.status"
+           placeholder="Enter workers Status"/></td>
+
+    <td><button type="submit">Add Worker</button></td>
+    </tr></table>
+    <table class="top_table_right"><tr class="top_table_right"><td class="top_table_right">
+        <button *ngIf="worker.id" (click)="clickMethod(worker.id)">Delete</button>
+    </td></tr></table>
+</form>

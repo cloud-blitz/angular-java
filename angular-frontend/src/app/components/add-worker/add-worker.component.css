@@ -1,0 +1,32 @@
+table {
+    margin: auto;
+    align-self: center;
+    width:90%;
+    border-collapse:collapse;
+    border:1px solid;
+}
+.top_table_left{
+    border-style: hidden;
+    text-align: bottom;
+    text-align:left;
+    padding: 0px;
+}
+.top_table_right{
+    border-style: hidden;
+    text-align: bottom;
+    text-align: right;
+    padding: 0px;
+}
+td,th {
+    width: 15%;
+    border:1px solid;
+    margin: auto;  
+    text-align: center;
+    height:50px;
+    font-size: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+input {
+    height: 100%;
+    width: 100%;
+}
