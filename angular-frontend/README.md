@@ -76,4 +76,3 @@ EXPOSE 80
 
 # Start NGINX server when the container starts
 CMD ["nginx", "-g", "daemon off;"]
-
