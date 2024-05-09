@@ -1,27 +1,79 @@
-# AngularFrontend
+# Angular Project Setup Guide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+This guide provides step-by-step instructions for setting up an Angular project from scratch on an Ubuntu machine.
 
-## Development server
+## Step 1: Install Node.js and npm
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```bash
+sudo apt update
+sudo apt install nodejs npm
+```
+## Step 2: Check Node.js and npm versions
 
-## Code scaffolding
+```bash
+node -v
+npm -v
+```
+## Step 3: Install Angular CLI globally
+```bash
+sudo npm install -g @angular/cli@14.2.1
+```
+## Step 4: Verify Angular CLI installation
+```bash
+ng --version
+```
+## Step 5: Install project dependencies (if needed)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+ng build 
+cd dist/angular-frontend
+ng serve --host 0.0.0.0 --port=80
+```
+## Step 5: Deploy the artifact
+Transfer the contents of the dist/ directory to your server or hosting provider to make your Angular application available to users.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Angular Project Dockerization Guide
 
-## Running unit tests
+This guide provides step-by-step instructions for Dockerizing an existing Angular project. Docker allows you to package your Angular application into a container, making it portable and easily deployable across different environments.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Prerequisites
 
-## Running end-to-end tests
+- Docker installed on your system. You can download and install Docker Desktop from [here](https://docs.docker.com/engine/install/).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Dockerfile Setup
 
-## Further help
+Create a `Dockerfile` in the root directory of your Angular project with the following content:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```Dockerfile
+# Use official Node.js image as the base image
+FROM node:14-alpine as build
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
+
+# Install project dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Angular application
+RUN npm run build 
+
+# Use NGINX as the production server
+FROM nginx:alpine
+
+# Copy the built artifact from the previous stage to NGINX web server directory
+COPY --from=build /usr/src/app/dist/angular-frontend /usr/share/nginx/html
+
+# Expose port 80 to the outside world
+EXPOSE 80
+
+# Start NGINX server when the container starts
+CMD ["nginx", "-g", "daemon off;"]
+
