@@ -45,7 +45,7 @@ This guide provides step-by-step instructions for setting up and running a Sprin
 
 Feel free to modify this guide according to your specific requirements.
 
-## Dockefile
+## Dockerfile
 ```dockerfile
 # Use Ubuntu as base image
 FROM ubuntu:latest
